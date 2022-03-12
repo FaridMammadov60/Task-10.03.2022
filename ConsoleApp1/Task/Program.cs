@@ -3,35 +3,47 @@ using System.Text;
 
 namespace Task
 {
+
+
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.OutputEncoding = Encoding.Unicode;
-            Console.InputEncoding = Encoding.Unicode;
-        L1: Console.Write("Verilmiş 4 tapşırıqdan birini yoxlamaq üçün 1-4 aralığında rəqəm daxil edin: ");
-            int a = Convert.ToInt32(Console.ReadLine());
-            switch (a)
+            try
             {
-                case 1:
-                    Task1();
-                    break;
-                case 2:
-                    Task2();
-                    break;
-                case 3:
-                    Task3();
-                    break;
-                case 4:
-                    Task4();
-                    break;
-                default:
-                    Console.WriteLine("Daxil edilmiş nömrə düzgün deyil\n" +
-                        "Təkrar yoxlayın");
-                    goto L1;                    
+                Console.OutputEncoding = Encoding.Unicode;
+                Console.InputEncoding = Encoding.Unicode;
+            L1: Console.Write("Verilmiş 4 tapşırıqdan birini yoxlamaq üçün 1-4 aralığında rəqəm daxil edin: ");
+                int a = Convert.ToInt32(Console.ReadLine());
+                switch (a)
+                {
+                    case 1:
+                        Task1();
+                        break;
+                    case 2:
+                        Task2();
+                        break;
+                    case 3:
+                        Task3();
+                        break;
+                    case 4:
+                        Task4();
+                        break;
+                    default:
+                        Console.WriteLine("Daxil edilmiş nömrə düzgün deyil\n" +
+                            "Təkrar yoxlayın");
+                        goto L1;
+                }
             }
+            catch (Exception)
+            {
+
+                Console.WriteLine("Problem var.");
+            }
+         
 
         }
+
         static void Task1()
         {
             Console.Write("Birinci rəqəmi daxil edin: ");
@@ -68,7 +80,44 @@ namespace Task
         }
         static void Task4()
         {
-
+        L2: Console.Write("Çevrənin sahəsi üçün 1\n" +
+                "Düzbucaqlının sahəsi üçün 2\n" +
+                "Üçbucaqlının daxilinə çəkilmiş çevrənin sahəsi 3 düyməsin sıxın  ");
+            byte a=Convert.ToByte(Console.ReadLine());
+                
+            switch (a)
+            {
+                case 1:
+                    Console.Write("Radius daxil et: ");
+                    double r=Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine(Sahe(r)); 
+                    break;
+                case 2:
+                    Console.Write("Ədəd daxil edin:");
+                    double num1=Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Ədəd daxil edin:");
+                    double num2 =Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine(Sahe(num1, num2));
+                    
+                    break;
+                case 3:
+                    Console.Write("Ədəd daxil edin:");
+                    double num3 = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Ədəd daxil edin:");
+                    double num4 = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Ədəd daxil edin:");
+                    double num5 = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Radius daxil et: ");
+                    double r1 = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine(Sahe(num3, num4, num5, r1));
+                    
+                    break;
+                default:
+                    Console.WriteLine("Daxil edilmiş nömrə düzgün deyil\n" +
+                      "Təkrar yoxlayın");
+                    goto L2;
+                    
+            }
         }
 
         /// <summary>
@@ -116,9 +165,38 @@ namespace Task
             }
            return sum;
         }
-        static double Sahe()
+
+        /// <summary>
+        /// Çevrənin sahəsi - S = p*r² (p=3). 
+        /// </summary>
+        /// <returns></returns>
+        static double Sahe(double r)
         {
-            double s = 0;
+            double s = 3*r*r;
+            return s;
+        }
+        /// <summary>
+        /// Düz bucaqlının sahəsi - S = a* b
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        static double Sahe(double a, double b)
+        {
+            double s = a * b;
+            return s;
+        }
+        /// <summary>
+        /// uçbucaqlının daxilinə çəkilmiş çevrənin sahəsi - S=p* r; p=(a+b+c)/2
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
+        /// <param name="r"></param>
+        /// <returns></returns>
+        static double Sahe(double a, double b, double c, double r)
+        {
+            double s = (a + b +c)/2*r;
             return s;
         }
     }
